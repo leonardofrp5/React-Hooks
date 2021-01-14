@@ -1,0 +1,21 @@
+.character {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: end;
+}
+
+.setionName {
+  align-items: center;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  justify-content: center;
+  margin: 10px;
+  width: 200px;
+}
+
+.titleCharacter {
+  margin: 5px 0;
+}
