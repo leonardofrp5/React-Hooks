@@ -72,7 +72,7 @@ const Character = () => {
       {filterUser.length > 0 ?
         filterUser.map(character => (
           <div key={character.id} className='setionName'>
-            <img alt="photo-every-character" src={character.image} className="imageCharacters"/>
+            <img alt="character" src={character.image} className="imageCharacters"/>
             <span className='titleCharacter'>{character.name}</span>
             <button type='button' onClick={() => handleClick(character)}>Like</button>
           </div>
