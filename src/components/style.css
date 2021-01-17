@@ -7,15 +7,22 @@
 
 .setionName {
   align-items: center;
-  border: solid;
+  box-shadow: 0 0 17px -2px #000;
   display: flex;
   flex-direction: column;
-  height: 80px;
+  height: 300px;
   justify-content: center;
   margin: 10px;
-  width: 200px;
+  width: 220px;
 }
 
 .titleCharacter {
   margin: 5px 0;
+}
+
+
+.imageCharacters {
+  height: 200px;
+  object-fit: cover;
+  width: 150px;
 }

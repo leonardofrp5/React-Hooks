@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useReducer, useMemo, useRef, useCallback } from 'react';
+import React, { useState, useReducer, useMemo, useRef, useCallback } from 'react';
 import Search from './Search';
+import useCharacters from '../hooks/useCharacters';
 
 const initialState ={
   favorites: []
@@ -18,16 +19,18 @@ const favoriteReducer = (state, action) => {
 }
 
 const Character = () => {
-  const [characters, setCharacter] = useState([]);
+  // const [characters, setCharacter] = useState([]);
   const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
   const [search, setSearch] = useState('');
   const searchInput = useRef(null);
+  const API = 'https://rickandmortyapi.com/api/character';
+  const characters = useCharacters(API);
 
-  useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character')
-    .then(response => response.json())
-    .then(data => setCharacter(data.results));
-  }, []);
+  // useEffect(() => {
+  //   fetch('https://rickandmortyapi.com/api/character')
+  //   .then(response => response.json())
+  //   .then(data => setCharacter(data.results));
+  // }, []);
 
   const handleClick = (favorite) => {
     dispatch({ type: 'ADD_TO_FAVORITE', paylod: favorite})
@@ -53,6 +56,8 @@ const Character = () => {
     }), [characters, search]
   );
 
+  console.log(filterUser)
+
   return (
     <>
       {favorites.favorites.map(favorite => (
@@ -67,6 +72,7 @@ const Character = () => {
       {filterUser.length > 0 ?
         filterUser.map(character => (
           <div key={character.id} className='setionName'>
+            <img alt="photo-every-character" src={character.image} className="imageCharacters"/>
             <span className='titleCharacter'>{character.name}</span>
             <button type='button' onClick={() => handleClick(character)}>Like</button>
           </div>
