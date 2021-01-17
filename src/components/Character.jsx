@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useReducer, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useReducer, useMemo, useRef, useCallback } from 'react';
+import Search from './Search';
 
 const initialState ={
   favorites: []
@@ -32,9 +33,13 @@ const Character = () => {
     dispatch({ type: 'ADD_TO_FAVORITE', paylod: favorite})
   }
 
-  const hangleSearch = () => {
+  // const hangleSearch = () => {
+  //   setSearch(searchInput.current.value);
+  // }
+
+  const hangleSearch = useCallback(() => {
     setSearch(searchInput.current.value);
-  }
+  }, [])
 
   // const filterUser = characters.filter((user) => {
   //   // console.log(user);
@@ -56,9 +61,7 @@ const Character = () => {
         </li>
       ))}
 
-      <div>
-        <input className='search' value={search} ref={searchInput} onChange={hangleSearch}></input>
-      </div>
+      <Search search={search} searchInput={searchInput} hangleSearch={hangleSearch}/>
 
     <div className='character'>
       {filterUser.length > 0 ?
